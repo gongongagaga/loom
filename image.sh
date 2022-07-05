@@ -22,7 +22,7 @@ mkfs.fat -F 32 ${USED_LOOPBACK}p1
 mkdir -p img_mount
 mount ${USED_LOOPBACK}p1 img_mount
 
-mkdir -p img_mount/EFI/BOOT
+mkdir -p img_mount/EFI/BOOT/
 cp -v loom.elf limine.cfg /usr/local/share/limine/limine.sys img_mount
 cp -v /usr/local/share/limine/BOOTX64.EFI img_mount/EFI/BOOT/
 

@@ -38,7 +38,9 @@ void knewline() {
 
     while (x >= (2 * fb_font.width)) {
         for (i = 0; i < fb_font.height; i++) {
-            for (j = 0; j < fb_font.width; j++) { draw_px(x + j, y + i, 0x000000); }
+            for (j = 0; j < fb_font.width; j++) {
+                draw_px(x + j, y + i, 0x000000);
+            }
         }
 
         x = (cursor_x * fb_font.width) - fb_font.width, y = cursor_y * fb_font.height;
@@ -54,11 +56,17 @@ void putchar_at(char c, int position_x, int position_y, uint32_t color, uint32_t
 
             return;
 
-        case '\r': cursor_x = 0; return;
+        case '\r':
+            cursor_x = 0;
+            return;
 
-        case '\t': cursor_x += 5; return;
+        case '\t':
+            cursor_x += 5;
+            return;
 
-        case '\b': cursor_x--; return;
+        case '\b':
+            cursor_x--;
+            return;
     }
 
     uint8_t* glyph = &fb_font.data[c * fb_font.glyph_size];
@@ -89,28 +97,42 @@ void putchar_at(char c, int position_x, int position_y, uint32_t color, uint32_t
         cursor_x = 0;
     }
 
-    if (c != '\n') { cursor_x++; }
+    if (c != '\n') {
+        cursor_x++;
+    }
 }
 
-void putchar_color(char c, uint32_t color, uint32_t bgcolor) { putchar_at(c, cursor_x, cursor_y, color, bgcolor); }
+void putchar_color(char c, uint32_t color, uint32_t bgcolor) {
+    putchar_at(c, cursor_x, cursor_y, color, bgcolor);
+}
 
-void putchar(char c) { putchar_color(c, 0xFFFFFF, 0x000000); }
+void putchar(char c) {
+    putchar_color(c, 0xFFFFFF, 0x000000);
+}
 
 void kprint_color(char* string, uint32_t color) {
-    while (*string) { putchar_at(*string++, cursor_x, cursor_y, color, 0x000000); }
+    while (*string) {
+        putchar_at(*string++, cursor_x, cursor_y, color, 0x000000);
+    }
 }
 
 void kprint(char* string) {
-    while (*string) { putchar_color(*string++, 0xFFFFFF, 0x000000); }
+    while (*string) {
+        putchar_color(*string++, 0xFFFFFF, 0x000000);
+    }
 }
 
 void kprintbgc(char* string, uint32_t fcolor, uint32_t bcolor) {
-    while (*string) { putchar_color(*string++, fcolor, bcolor); }
+    while (*string) {
+        putchar_color(*string++, fcolor, bcolor);
+    }
 }
 
 void draw_rect(int width, int height, int offx, int offy, uint32_t color) {
     for (int i = 0; i < width + 1; i++) {
-        for (int j = 0; j < height + 1; j++) { draw_px(i + offx, j + offy, color); }
+        for (int j = 0; j < height + 1; j++) {
+            draw_px(i + offx, j + offy, color);
+        }
     }
 }
 

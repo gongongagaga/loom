@@ -5,7 +5,9 @@ void* memcpy(void* dest, const void* src, size_t nbytes) {
     uint8_t* p = (uint8_t*)src;
     uint8_t* end = p + nbytes;
 
-    while (p != end) { *q++ = *p++; }
+    while (p != end) {
+        *q++ = *p++;
+    }
 
     return dest;
 }
@@ -17,17 +19,22 @@ void* memccpy(void* restrict dest, const void* restrict src, int c, size_t n) {
 
     for (; n && (*d = *s) != c; n--, s++, d++)
         ;
-    if (n) { return d + 1; }
+    if (n) {
+        return d + 1;
+    }
 
     return 0;
 }
 
-void* mempcpy(void* dest, const void* src, size_t nbytes) { return (char*)memcpy(dest, src, nbytes) + nbytes; }
+void* mempcpy(void* dest, const void* src, size_t nbytes) {
+    return (char*)memcpy(dest, src, nbytes) + nbytes;
+}
 
 void* memset(void* dest, uint8_t val, size_t len) {
     uint8_t* temp = (uint8_t*)dest;
 
-    for (; len != 0; len--) *temp++ = val;
+    for (; len != 0; len--)
+        *temp++ = val;
 
     return dest;
 }
@@ -41,9 +48,13 @@ void* memmove(void* dest, const void* src, size_t nbytes) {
         p = end;
         q += nbytes;
 
-        while (p != src) { *--q = *--p; }
+        while (p != src) {
+            *--q = *--p;
+        }
     } else {
-        while (p != end) { *q++ = *p++; }
+        while (p != end) {
+            *q++ = *p++;
+        }
     }
 
     return dest;
@@ -64,7 +75,9 @@ void* memrchr(const void* buf, int c, size_t n) {
     c = (uint8_t)c;
 
     while (n--) {
-        if (s[n] == c) { return (void*)(s + n); }
+        if (s[n] == c) {
+            return (void*)(s + n);
+        }
     }
 
     return 0;
@@ -80,7 +93,9 @@ int memcmp(const void* s1, const void* s2, size_t n) {
         --n;
     }
 
-    if (n == 0) { return 0; }
+    if (n == 0) {
+        return 0;
+    }
 
     return *byte1 - *byte2;
 }

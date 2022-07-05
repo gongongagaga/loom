@@ -1,12 +1,13 @@
 #ifndef VIDEO_H
 #define VIDEO_H
 
-#include "../klibc/mem.h"
-#include "../klibc/string.h"
-#include "psf.h"
 #include <stddef.h>
 #include <stdint.h>
 #include <stivale2.h>
+
+#include "../klibc/mem.h"
+#include "../klibc/string.h"
+#include "psf.h"
 
 void video_init(struct stivale2_struct_tag_framebuffer* framebuffer);
 void putchar_color(char c, uint32_t color, uint32_t bgcolor);
