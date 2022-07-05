@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "name": "GCC",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/stivale",
+                "/home/gongon/Documents/crosstools/include"
+            ],
+            "compilerPath": "/home/gongon/Documents/crosstools/bin/x86_64-elf-gcc",
+            "compilerArgs": [
+                "-Wall", "-Wextra", "-O2", "-pipe", "-I stivale/"
+            ],
+            "cStandard": "c99"
+        }
+    ],
+    "version": 4
+}

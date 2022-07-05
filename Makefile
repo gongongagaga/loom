@@ -5,12 +5,12 @@ AS = nasm
 
 CFLAGS = -Wall -Wextra -O2 -pipe -I stivale/
 
-INTERNALLDFLAGS :=  \
-	-T kernel/linker.ld      \
-	-nostdlib                \
-	-Wl,-static,-pie         \
-	-Wl,--no-dynamic-linker  \
-	-z max-page-size=4096    \
+INTERNALLDFLAGS := \
+	-T kernel/linker.ld \
+	-nostdlib \
+	-Wl,-static,-pie \
+	-Wl,--no-dynamic-linker \
+	-z max-page-size=4096 \
 	-z text -lgcc
 
 INTERNALCFLAGS := \
@@ -41,10 +41,6 @@ $(KERNEL): $(OBJ)
 %.o: %.asm
 	@$(AS) -felf64 $< -o $@
 	@echo " ASM      $<"
-
-format:
-	@find . \( -name '*.c' -o -name '*.cc' -o -name '*.cpp' -o -name '*.h' -o -name '*.hh' -o -name '*.hpp' -not -path "./stivale" \) -exec "clang-format" -i '{}' \;
-	@echo " FMT      loom"
 
 clean:
 	@rm -rf $(KERNEL) $(OBJ)
