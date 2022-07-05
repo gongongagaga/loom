@@ -1,0 +1,9 @@
+*.elf
+*.img
+*.o
+*.kdev4
+
+.kdev4/
+.vscode/
+
+img_mount/
