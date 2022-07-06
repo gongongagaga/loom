@@ -3,9 +3,11 @@
 #include <stivale2.h>
 
 #include "../video/video.h"
+#include "die.h"
+
+extern void init_gdt();
 
 static uint8_t stack[4096];
-
 static struct stivale2_header_tag_framebuffer framebuffer_hdr_tag = {
     .tag = {
         .identifier = STIVALE2_HEADER_TAG_FRAMEBUFFER_ID,
@@ -53,12 +55,11 @@ void _start(struct stivale2_struct* stivale2_struct) {
         }
     }
 
+    init_gdt();
     video_init(fb_str_tag);
     clear_screen(0x000000);
 
-    for (int i = 0; i < 32; i++) {
-        kprint_color("Hello 64bit World!\n", 0x00FF00);
-    }
+    kprint("* Initialized GDT\n");
 
     for (;;) {
         __asm__("hlt");

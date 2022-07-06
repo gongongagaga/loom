@@ -4,7 +4,8 @@
         "stivale2.h": "c",
         "video.h": "c",
         "stddef.h": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "mem.h": "c"
     },
     "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools"
 }

@@ -1,26 +1,27 @@
 ENTRY(_start)
 
 SECTIONS {
-    . = 0xffffffff80200000;
+    kernel_phys_offset = 0xffffffff80000000;
+    . = kernel_phys_offset + 0x100000;
 
-    .stivale2hdr : {
-        KEEP(*(.stivale2hdr))
+    .stivalehdr ALIGN(4K) : {
+        KEEP(*(.stivalehdr))
     }
 
-    .text : {
-        *(.text*)
+    .text ALIGN(4K) : {
+        KEEP(*(.text*))
     }
 
-    .rodata : {
-        *(.rodata*)
+    .rodata ALIGN(4K) : {
+        KEEP(*(.rodata*))
     }
 
-    .data : {
-        *(.data*)
+    .data ALIGN(4K) : {
+        KEEP(*(.data*))
     }
 
-    .bss : {
-        *(COMMON)
-        *(.bss*)
+    .bss ALIGN(4K) : {
+        KEEP(*(COMMON))
+        KEEP(*(.bss*))
     }
 }

@@ -6,12 +6,13 @@ AS = nasm
 CFLAGS = -Wall -Wextra -O2 -pipe -I stivale/
 
 INTERNALLDFLAGS := \
-	-T kernel/linker.ld \
+	-fno-pic -fpie \
+	-Wl,-static,-pie,--no-dynamic-linker,-ztext \
+	-Wl,-static \
+	-static-pie \
 	-nostdlib \
-	-Wl,-static,-pie \
-	-Wl,--no-dynamic-linker \
-	-z max-page-size=4096 \
-	-z text -lgcc
+	-T kernel/linker.ld \
+	-z max-page-size=0x1000
 
 INTERNALCFLAGS := \
 	-I. \
